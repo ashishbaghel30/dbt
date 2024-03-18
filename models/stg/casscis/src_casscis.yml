@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: casscis
+    database: ashish
+    schema: jaffle_shop
+    tables:
+      - name: customers
+      - name: orders

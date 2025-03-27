@@ -1,0 +1,2473 @@
+1
+Question 1
+In which of the following scenarios a data engineer would use an all -purpose cluster?
+•
+When the cluster needs to be shared between multiple users
+(Correct)
+•
+When the data engineer needs to save the cost
+•
+When the data engineer needs to schedule the job to run every hour
+•
+When the job contains multiple languages
+•
+When the data engineer needs to terminate the cluster as the job ends
+Explanation
+There are two types of clusters in Databricks. A job cluster and an all-purpose
+cluster. An all-purpose cluster can be shared between users while a job
+cluster cannot be shared between users.
+An all-purpose cluster is created by the user specifying the required settings but
+the job cluster is created as soon as you run a job. The job cluster is terminated as
+soon as the job finishes.
+More Info: Choosing the correct type of cluster in Databricks
+2
+Question 2
+Which of the following define the managed table correctly?
+•
+Managed tables are those which are created by the Databricks admin
+•
+Managed tables are those for which both metadata and data are managed by
+Databricks
+(Correct)
+•
+Managed tables are those for which only metadata is managed by Databricks
+•
+Managed tables are those which are dropped automatically after use
+•
+Managed tables are those for which only data is managed by Databricks
+Explanation
+Let us explore all the options and try to find out which one could be true for a
+managed table.
+Managed tables are those which are created by the Databricks admin
+INCORRECT. The type of table does not depend on the user who created the table
+Managed tables are those for which both metadata and data are managed by
+Databricks
+CORRECT. As the name suggests, a table for which both metadata and data are
+managed by Databricks is called a managed table.
+Managed tables are those for which only metadata is managed by Databricks
+3
+INCORRECT. As discussed earlier, Databricks manages both data and metadata for a managed table.
+Managed tables are those which are dropped automatically after use
+INCORRECT. There is no table type in Databricks which are dropped automatically after use.
+Managed tables are those for which only data is managed by Databricks
+INCORRECT. As discussed earlier, Databricks manages both data and metadata for a managed table.
+Also note, for external or unmanaged tables Databricks manages only the metadata associated with the table.
+More Info: Managed table in Databricks
+4
+Question 3
+Which of the following commands can be used to combine small files to a bigger file
+to achieve better performance?
+•
+VACUUM
+•
+DELETE
+•
+OPTIMIZE
+(Correct)
+•
+COMBINE
+•
+RESTORE
+Explanation
+Some of the above commands can be asked in the actual exam. So, it is preferred
+that you know each one of them. Let us go through all the options and learn more
+about their usage to help you train for the actual exam.
+VACUUM – Cleans up files that are older than X number of hours.
+DELETE – Used to delete data from a table
+OPTIMIZE – Used for optimizing the files by combining small files to a bigger file.
+COMBINE – Invalid command
+RESTORE – Used for restoring a table to a previous version or timestamp
+Looking at all the options and their usage you now know why OPTIMIZE is the correct
+answer.
+More Info: VACUUM | DELETE FROM | OPTIMIZE | RESTORE
+5
+Question 4
+In a notebook, all the cells contain code in Python language and you want to add
+another cell with a SQL statement in it. You changed the default language of the
+notebook to accomplish this task. What changes (if any) can be seen in the already
+existing Python cells?
+•
+The Python cells will be grayed out and won’t run until you change the
+default language back to Python
+•
+The magic command %python will be added at the beginning of all the cells
+that contain Python code
+(Correct)
+•
+The magic command %python will be added at the end of all the cells that
+contain Python code
+•
+The magic command %sql will be added at the beginning of all the cells that
+contain Python code
+•
+There will be no change in any cell and the notebook will remain the same
+Explanation
+In this case, the magic command %python will be added at the beginning of all the
+cells that contain Python code. If you try to change the default language for a
+notebook, all the cells containing code in previously selected default language will be
+updated and %previous_default_language (like %sql, %scala) will be added as
+the first line in the cells. This is done to assure that the default language
+changes will not affect the working of the notebook.
+The following are the language magic commands supported in Databricks notebook:
+1. %scala
+2. %r
+3. %python
+4. %sql
+6
+More Info: Effect of changing the default language of a Databricks notebook
+7
+Question 5
+Which of the following statements is INCORRECT for a Delta Lake?
+•
+Delta Lake is open-source
+•
+Delta Lake is ACID compliance
+•
+Delta Lake can run on an existing Data Lake
+•
+Delta Lake is compatible with Spark API
+•
+Delta Lake stores data with .dl extension
+(Correct)
+Explanation
+Let us go through all the options one by one and find out which one isn't correct for a
+Delta Lake.
+Delta Lake is open-source - Delta Lake is an open-source storage framework which
+frames the base for the Databricks Lakehouse platform.
+Delta Lake is ACID compliance - Delta Lake ensures consistent data for the readers
+while making sure that multiple reads and writes to the table are conflict-less.
+Delta Lake can run on an existing Data Lake - Delta Lake runs on top of your existing
+Data Lake.
+Delta Lake is compatible with Spark API - Delta Lake is fully compatible with Spark
+API.
+Delta Lake stores data with .dl extension - Delta Lake does not store data
+with .dl extension but stores it in Parquet format with versioning. Delta Lake also
+stores transaction logs known as DeltaLog
+It is important to note that Delta Lake is the default for all tables created in
+Databricks which means adding USING DELTA while creating a table is redundant.
+8
+More Info: Delta Lake
+9
+Question 6
+A data engineer needs to create a Delta table employee only if a table with the same
+name does not exist. Which of the following SQL statements can be used to create
+the table?
+•
+1. CREATE OR REPLACE TABLE employee
+2. (emp_id int, name string)
+3. USING DELTA;
+•
+1. CREATE TABLE employee
+2. (emp_id int, name string);
+•
+1. CREATE TABLE employee IF NOT EXISTS
+2. (emp_id int, name string)
+3. USING DELTA;
+•
+1. CREATE TABLE IF NOT EXISTS employee
+2. (emp_id int, name string);
+(Correct)
+•
+1. CREATE OR REPLACE TABLE employee
+2. emp_id int, name string;
+Explanation
+CREATE TABLE IF NOT EXISTS is used when you need to create a table ONLY if it
+does not exist. So, all the options that do not use CREATE TABLE IF NOT EXISTS are
+incorrect. We are down to just 2 options, let’s examine each of them.
+1. CREATE TABLE employee IF NOT EXISTS
+2. (emp_id int, name string)
+3. USING DELTA;
+INCORRECT. As per the syntax of table creation, IF NOT EXISTS should
+come before the table name.
+1. CREATE TABLE IF NOT EXISTS employee
+2. (emp_id int, name string);
+CORRECT. This is the correct code block. It will create the table only if it does not
+exist. Moreover, the default table type in Databricks is DELTA which means that
+adding USING DELTA at the end of the query is optional.
+More Info: Using IF NOT EXISTS for table creation
+10
+Question 7
+Which of the following is the correct order of git commands to save the data in the
+central repository?
+•
+git add -> git pull
+•
+git add -> git push -> git commit
+•
+git push -> git add -> git commit
+•
+git add -> git commit -> git push
+(Correct)
+•
+git pull -> git commit -> git push
+Explanation
+The correct order of commands is as follows:
+git add -> git commit -> git push
+git add adds the files to a staging area while git commit is used for recording the
+changes in the repository. git push is used to push the changes with its logs to
+a central repository.
+Also note, if you need to get a remote repository in Databricks, you would need
+to clone the repository first. To get the latest updates from a remote repository, you
+can use git pull which makes your local repo in sync with the remote repo.
+More Info: Basic git commands
+11
+Question 8
+A junior data engineer has just joined your team and has accidentally deleted all the
+records from delta table currency_exchange using the command DELETE FROM
+currency_exchange.
+You ran the following query: DESCRIBE HISTORY currency_exchange and found out
+that the latest version is 6. You need to roll back the delete operation and get the
+contents back. Which of the following SQL statements will accomplish this task?
+•
+RESTORE TABLE currency_exchange TO VERSION AS OF 6
+•
+RESTORE TABLE currency_exchange TO VERSION 5
+•
+ROLLBACK currency_exchange TO VERSION AS OF 5
+•
+RESTORE TABLE currency_exchange TO VERSION AS OF 5
+(Correct)
+•
+RESTORE currency_exchange TO VERSION 6
+Explanation
+The
+12
+Question states that the latest version is 6 which means that you need to restore the table to version 5 which still has all the deleted data. Now, the syntax to restore a table is RESTORE TABLE [table_name] TO VERSION AS OF [version]
+As you need to restore it to version 5 your query will look like this: RESTORE TABLE currency_exchange TO VERSION AS OF 5
+More Info: Restoring a table to an earlier state
+13
+Question 9
+As a data engineer, you dropped a table by using DROP command and noticed that
+the table has been removed but the underlying data is still present. Which of the
+following is true about the situation?
+•
+The DROP command has not been completed successfully
+•
+The table is a managed table
+•
+The data of the table is delete-protected
+•
+The table is an external or unmanaged table
+(Correct)
+•
+The table is a semi-managed table
+Explanation
+Firstly, you should know the difference between a managed and
+an unmanaged table.
+A table for which both data and metadata are controlled by Databricks is known as
+a managed table. When you drop a managed table, data is also deleted.
+The other type of table is an unmanaged or external table which is being referred to
+in this
+14
+Question. The unmanaged table gives the control of the data to the user and only the metadata is controlled by Databricks. Considering these facts, you can easily judge the right answer.
+More Info: Managed and unmanaged tables in Databricks
+15
+Question 10
+Which of the following pages will allow you to view, update or delete a cluster?
+•
+Data Page
+•
+Compute Page
+(Correct)
+•
+Workflows Page
+•
+Experiments Page
+•
+Functions Page
+Explanation
+The left side navigation menu is the most often used thing in the Databricks. It can
+be used to switch between Data Science and Engineering, Machine
+Learning and Databricks SQL as per the requirement.
+The Compute page or pane allows users to examine cluster related operations.
+Some of the tasks that can be done on the Compute page or pane are as follows:
+1. Create a new cluster
+2. Delete an existing cluster
+3. Stop a running cluster
+4. Start a cluster
+5. View the list of clusters
+and more...
+Now, let us take a look at the other options given in the
+16
+Question.
+Data page or pane - It contains DBFS and Database tables tabs. It is mainly used for accessing the files stored on DBFS or to quickly look at the databases and tables.
+Workflows page or pane - It is used for creating jobs, tasks, workflows, ETL pipelines etc.
+Function page or pane - There is no such page or pane in Databricks.
+Experiments page or pane - It is used to create, view, update and delete Machine Learning Experiments.
+More Info: Creating clusters in Compute page
+17
+Question 11
+Databricks allows users to change the default language of their notebooks. Which of
+the following languages cannot be set as a default language?
+•
+Scala
+•
+Java
+(Correct)
+•
+Python
+•
+SQL
+•
+R
+Explanation
+Databricks supports Scala, Python, SQL and R as default languages while Java is not
+supported as of now. To change the default language of a notebook, you need to
+select the required language from the top of the notebook. If you need to change the
+language of a particular cell, you can go to the top right corner of the cell and set it
+to your preferred language.
+Remember, if you select a language for a cell which is not the default language of
+the notebook, the %cell_language will be added to the cell. So, if the default
+language of the notebook is Python and you select Scala for a particular
+cell, %scala will be added(as the first line) in the cell.
+More Info: Default language in Databricks notebooks
+18
+Question 12
+Which of the following commands can be used to rotate a table on one of its axes?
+•
+ROTATE
+•
+PIVOT
+(Correct)
+•
+FILTER
+•
+EXIST
+•
+REDUCE
+Explanation
+PIVOT command helps in viewing different data perspectives of a table
+including slicing, dicing and rotating. Using PIVOT you can easily convert a long
+table(more rows) to a wide table(more columns).
+Let us understand this with an example.
+The following table named soccer contains 3 columns and 45 rows.
+19
+We, now run the following PIVOT query on the soccer table.
+1. SELECT player, Germany, Argentina, Slovakia, Iceland, Greece, Wales, Iran, Spain, Netherlands, Sweden, Switzerland, Hungary
+2. FROM soccer
+3. PIVOT (SUM(goals) FOR opposition in ('Germany', 'Argentina', 'Slovakia', 'Iceland', 'Greece', 'Wales', 'Iran', 'Spain', 'Netherlands', 'Sweden', 'Switzerland', 'Hungary'))
+This query results in the following table.
+You can notice that the structure of the table has changed. The values in the opposition column like Spain, Germany, Iceland are now placed as individual columns. This shows, you can easily convert a long table(more rows) to a wide table(more columns) using PIVOT. Please note, this is just an example of how PIVOT method works. It does not justify the immense business applications of PIVOT operation.
+20
+More Info: PIVOT in SQL
+21
+Question 13
+A data engineer is working on multiple Databricks notebooks. The next notebook to
+be run depends on the value of the python variable next_notebook which can range
+from 0 to 7. Which of the following can be used by the data engineer to run the
+notebooks depending on the value of next_notebook?
+•
+AutoLoader
+•
+Multi-hop architecture
+•
+SQL endpoint
+•
+Python control flow
+(Correct)
+•
+Delta lake
+Explanation
+Python control flow uses if else statements to control the flow of events. It is
+similar to CASE WHEN statements in SQL. It can be used to decide which notebook
+should be running next based on the condition in the if statement. For instance, you
+want to run setup notebook if the value of next_notebook is 0, you need to give the
+following condition:
+1. If next_notebook == 0:
+2. %run path_to_next_notebook
+It allows you to control the flow of events based on the provided conditions.
+More Info: Python Control Flow
+22
+Question 14
+Which of the following statements will increase the salary by 10000 for all the
+employees that have rating greater than 3 in the employees table?
+•
+1. UPDATE TABLE employees
+2. SET salary = salary + 10000
+3. WHERE rating > 3;
+•
+1. UPDATE employees
+2. SET salary = salary + 10000
+3. WHERE rating > 3;
+(Correct)
+•
+1. UPDATE employees
+2. SET salary = salary + 10000
+3. IF rating > 3;
+•
+1. UPDATE employees TABLE
+2. SET salary = salary + 10000
+3. WHERE rating > 3;
+•
+1. UPDATE employees
+2. salary = salary + 10000
+3. WHERE rating > 3;
+Explanation
+Syntax for UPDATE statement is:
+1. UPDATE table_name
+2. SET column = value….
+3. WHERE condition;
+Looking at the syntax, you can easily tell, the only option that satisfies the above
+syntax is option B, thus, is correct.
+More Info: UPDATE command in SQL
+23
+Question 15
+Find the error in the following SQL statement which intends to create a new
+database as per the following requirements. Also, if the database already exists an
+error message should be returned.
+CREATE SCHEMA IF NOT EXISTS company COMMENT ‘Company Database’ LOCATION
+‘/north/company’
+•
+CREATE SCHEMA should be replaced with CREATE DATABASE
+•
+COMMENT is not a valid parameter, DESCRIPTION should be used
+•
+IF NOT EXISTS should be removed from the statement
+(Correct)
+•
+Name of the database should always be capitalized i.e. COMPANY
+•
+CREATE should be appended with OR REPLACE
+Explanation
+Let us scan all the options and try to find out which option is correct.
+CREATE SCHEMA should be replaced with CREATE DATABASE
+INCORRECT. SCHEMA and DATABASE can be used interchangeably.
+COMMENT is not a valid parameter, DESCRIPTION should be used
+24
+INCORRECT. If you need to add some details about the newly created database, you can use COMMENT to do that and not DESCRIPTION
+IF NOT EXISTS should be removed from the statement
+CORRECT. As the
+25
+Question demands that an error message should be returned if the database already exists, IF NOT EXISTS should not be a part of the SQL statement as it will not return an error message when the database already exists.
+Name of the database should always be capitalized i.e. COMPANY
+INCORRECT. Database or table names are not case sensitive. Also note, even if you use COMPANY instead of company the query will still run successfully. Also, an interesting thing to note is that at backend all the databases and tables are stored in small-case. So, if you create a database named CoUrSeS it will still be stored as courses which you can confirm by running the following set of commands.
+CREATE should be appended with OR REPLACE INCORRECT. If CREATE OR REPLACE is used in the query, the database will be replaced and no error message will be shown even if the database exists, which is definitely not required according to the
+26
+Question.
+More Info: Using CREATE SCHEMA command to create new database
+27
+Question 16
+The view new_employees contain a set of employees that joined the company in the
+past one week. Details for some of those employees have already been added to
+the employees table. Also, the view new_employees and table employees have the
+same schema. Which of the following SQL statements would insert only those
+records in the employees table which are not already present, checking on the basis
+of emp_id column?
+•
+1. UPSERT INTO employees e
+2. USING new_employees n
+3. ON e.emp_id = n.emp_id
+4. WHEN MATCHED
+5. THEN INSERT *
+•
+1. INSERT INTO employees VALUES (SELECT * FROM new_employees)
+•
+1. MERGE INTO employees e
+2. USING new_employees n
+3. ON e.emp_id = n.emp_id
+4. WHEN MATCHED
+5. THEN INSERT ALL
+•
+1. MERGE INTO employees e
+2. USING new_employees n
+3. ON e.emp_id = n.emp_id
+4. WHEN MATCHED
+5. THEN INSERT *
+(Correct)
+•
+1. MERGE INTO employees e
+2. USING new_employees n
+3. ON e.emp_id = n.emp_id
+4. IF MATCHED
+5. THEN INSERT *
+Explanation
+In this type of
+28
+Questions, you need to use the MERGE INTO command. This command adds the rows based on the column given in the ON parameter. The correct code block is:
+1. MERGE INTO employees e
+2. USING new_employees n
+3. ON e.emp_id = n.emp_id
+4. WHEN MATCHED
+5. THEN INSERT * The MERGE INTO command is basically used for updating a table by merging another table into it. Usually, if the record does not already exist it is added and if the record is already there then it is updated. The MERGE INTO command can be used for inserting, deleting as well as updating the records.
+More Info: Using MERGE INTO command for insertion, updation and deletion
+29
+Question 17
+Which of the following views will be persisted through multiple sessions?
+•
+Only View
+•
+View and Global Temporary View
+(Correct)
+•
+View and Temporary View
+•
+Global Temporary View
+•
+All of them
+Explanation
+There are 3 types of Views supported in Databricks:
+1. View
+2. Temporary View
+3. Global Temporary View
+Out of these three - View and Global Temporary View are persisted through multiple
+sessions while the Temporary View is tied to a session and is not available to other
+sessions. Also note that if a cluster is restarted, the temp views and the global temp
+views are both GONE and cannot be accessed.
+Remember that views do not have any physical existence. If you need to store a
+data object physically on the file system, you should consider creating a table
+instead.
+More Info: Views in Databricks
+30
+Question 18
+The following python function show_str() intends to print the string passed to the
+function. Find the error.
+1. def show_str(string_to_show):
+2. print(‘string_to_show’)
+•
+Python function is defined using define keyword and not def
+•
+The colon should be removed
+•
+show() function should be used instead of print()
+•
+The quotes around the argument passed to print() function should be
+removed
+(Correct)
+•
+The function has no errors, it will print the desired string
+Explanation
+Let us look at all the options one by one to find out which part of the function(if any)
+needs to be changed.
+Python function is defined using define keyword and not def
+INCORRECT. In python programming language, function is defined
+using def keyword.
+The colon should be removed
+INCORRECT. Python does not use brackets to define the function body. Instead of
+brackets, it uses colon and indentation.
+31
+show() function should be used instead of print()
+INCORRECT. If you need to print something on the screen in python, you would need to use print() function while show() is an operation on a PySpark DataFrame.
+The quotes around the argument passed to print() function should be removed
+CORRECT. If you try to call the above function, it will print – string_to_show instead of the real string passed to the function. So, you will need to remove the quotes to make python treat this as a variable.
+The function has no errors, it will print the desired string
+INCORRECT. As discussed above, the quotes should be removed.
+More Info: Using print() function in python
+32
+Question 19
+You have recently got to know about a directory that contains 108 parquet files. As a
+data engineer, you are asked to look at the first hundred rows from the data to check
+the quality of the data stored in the files. Which of the following SQL statements can
+be used?
+•
+SELECT * FROM parquet.path LIMIT 100
+•
+You need to convert the files to a table as reading data directly from a
+directory is not supported in Databricks
+•
+SELECT * FROM parquet.`path` LIMIT 100
+(Correct)
+•
+SELECT * FROM parquet.`path` FIRST 100
+•
+SELECT * FROM path LIMIT 100
+Explanation
+This
+33
+Question tests your knowledge on reading parquet files directly from a file system like DBFS. Databricks supports viewing of parquet files in the form of a SQL table and allows the use of filter and other operations on a file or a directory.
+Also, to answer this
+34
+Question you need to know which command should be used to find the first N rows from a SQL table. In SQL, LIMIT command is used followed by the number of rows you need to return in the result. So, the correct code block: SELECT * FROM parquet.`path` LIMIT 100
+Also note, Backticks are used around the path and not the inverted commas. In most keyboards, Backticks are found under the Escape key (with the ~ tilde symbol).
+More Info: Reading from parquet files in Databricks
+35
+Question 20
+The following is the employees table snapshot:
+The details column contains data in the form of JSON but the data type of the
+column is string. The data analyst wants to view the table in the following form:
+Which of the following SELECT statements can be used to achieve the task?
+•
+SELECT emp_code, EXPLODE(details)
+•
+SELECT emp_code, details.*
+•
+SELECT emp_code, details:*
+•
+SELECT emp_code, details.name, details.age, details.salary
+•
+SELECT emp_code, details:name, details:age, details:salary
+(Correct)
+Explanation
+Let us see all the options one by one to find the correct answer:
+SELECT emp_code, EXPLODE(details)
+36
+INCORRECT. EXPLODE function can only be used on the array or map type columns but details is a string column. So, the EXPLODE function cannot be used on the details column.
+SELECT emp_code, details.* INCORRECT. * operator works with struct data type. Since, details is of string type * operator cannot be used.
+SELECT emp_code, details:* INCORRECT. As discussed earlier, * operator works with struct data type. Since, details is of string type * operator cannot be used.
+SELECT emp_code, details.name, details.age, details.salary INCORRECT. To unpack JSON value, : operator is used and not . operator.
+SELECT emp_code, details:name, details:age, details:salary
+CORRECT. This option ticks all the boxes to get the desired result.
+More Info: Unpacking JSON column in SQL
+37
+Question 21
+A data analyst needs to count the number of NULL values in
+column secondary_mobile from the data present in the personal_details table.
+Which of the following SQL statements, when executed, will fetch the required
+result?
+•
+SELECT count(NULL secondary_mobile) FROM personal_details
+•
+SELECT count_if(secondary_mobile NULL) FROM personal_details
+•
+SELECT count_if(secondary_mobile IS NULL) FROM personal_details
+(Correct)
+•
+SELECT count_null(secondary_mobile) FROM personal_details
+•
+SELECT count_if(NULL secondary_mobile) FROM personal_details
+Explanation
+To count the number of NULL values in a column, various methods can be adopted
+but the one which is used the most is count_if() function. count_if() function
+accepts conditions like email IS NOT NULL or length(phone_number) != 10 etc.
+In respect to the above
+38
+Question, the correct condition would be secondary_mobile IS NULL which is used in option C. As you can see, count_if() combines the functionality of count() function and WHERE clause, the required result can also be achieved using the following query:
+1. SELECT count(secondary_mobile)
+2. FROM personal_details
+3. WHERE secondary_mobile IS NULL
+More Info: Using count_if() function in SQL
+39
+Question 22
+Which of the following keywords should be used to create a UDF in SQL?
+•
+UDF
+•
+FUNC
+•
+FUNCTION
+(Correct)
+•
+USER DEFINED FUNCTION
+•
+DEF
+Explanation
+UDF is an essential part of Spark SQL processing. It can be created using the CREATE
+FUNCTION command. It helps in defining custom logic that can be applied to
+different columns of a table or a view.
+Please note, the UDF command CANNOT be used to create a function.
+More Info: Creating UDF in SQL
+40
+Question 23
+The following SQL statements intend to create a Delta table company_zones using a
+SQLite table named zones. Which of the following can replace the blank?
+1. CREATE TABLE company_zones
+2. ______________
+3. OPTIONS (
+4. url = “jdbc:sqlite:/companyDB”,
+5. dbtable = “zones”
+6. )
+•
+USING SQLITE
+•
+USING DELTA
+•
+USING JDBC
+(Correct)
+•
+USING DATABASE
+•
+USING SQL
+Explanation
+For connecting with SQL databases, Databricks uses the USING JDBC command. The
+type of database is identified by the url value in the OPTIONS. In this
+41
+Question, the connection needs to be made with SQLite database. Connection made to SQLite database does not require username, password or port number. For other databases, the url value in OPTIONS contains the host name as well as the port number while the username and password are also provided in key value pairs in OPTIONS.
+More Info: Querying SQL databases in Databricks
+42
+Question 24
+The following is a snapshot of the workers table where the details column is of
+array type.
+A data engineer needs to create a new column filtered_workers which contains
+values only for those records for which the salary of the worker is greater than
+10000. They decide to go with higher-order function. Which of the following
+statements should be used by the data engineer to complete the task?
+•
+FILTER (details, i -> i.salary > 10000) AS filtered_workers
+(Correct)
+•
+UDF (details, i -> i.salary > 10000) AS filtered_workers
+•
+REDUCE (details, i > 10000) AS filtered_workers
+•
+FILTER (details, salary > 10000) AS filtered_workers
+•
+FILTER (details, i -> i > 10000) AS filtered_workers
+Explanation
+Correct SQL statement:
+FILTER (details, i -> i.salary > 10000) AS filtered_workers
+FILTER is a higher-order function which can filter the contents of an array
+column using a lambda function. FILTER function takes two arguments, the array
+column name and the condition.
+Here, details is the name of the column and i -> i.salary > 10000 is the
+condition. If the condition is TRUE, the value is added to the
+43
+column filtered_workers. Also note, i is the variable which iterates over the array which means i.salary is the salary of each worker in the array.
+More Info: FILTER function in Spark SQL
+44
+Question 25
+Which of the following is not a feature of AutoLoader?
+•
+AutoLoader provides incremental processing of new files which are added to
+cloud storage.
+•
+AutoLoader can ingest files from AWS S3 and Google Cloud Storage
+incrementally
+•
+AutoLoader can ingest data in various formats including but not limited to
+JSON and CSV
+•
+AutoLoader uses _rescued_columns column for capturing the incompatible
+data
+(Correct)
+•
+AutoLoader converts all the columns to STRING data type when reading from
+JSON data source
+Explanation
+This is a confusing
+45
+Question as all the options look correct but one of them is not (partially). Although AutoLoader does use a column for capturing the incompatible data, it is not _rescued_columns as given in option D. It is rather _rescued_data column. Before moving to the next
+46
+Question, I would encourage you to read all the other options thoroughly as
+47
+Question may arrive in the actual exam asking the correctness of the other options.
+More Info: AutoLoader in Databricks
+48
+Question 26
+Which of the following are the commonly used naming conventions for the three
+tables of the Incremental multi-hop architecture in Databricks?
+•
+Bronze -> Silver -> Gold
+(Correct)
+•
+Raw -> Silver -> Gold
+•
+Silver -> Gold -> Dashboard
+•
+Silver -> Gold -> Platinum
+Explanation
+In a Databricks multi-hop architecture, the most common convention for the table
+names is Bronze, Silver and Gold. This is also called medallion architecture since
+this coincides with the medals given in a sporting event like Olympics.
+More Info: Naming conventions in multi-hop(medallion) architecture
+49
+Question 27
+A data engineer is working on a PySpark DataFrame silverDF as part of a multi-hop
+architecture. A data analyst needs to perform a one-time query on the DataFrame
+using SQL in the same session. They have written the following query to make the
+DataFrame available to the data analyst.
+silverDF.createOrReplaceTempView(‘silver_table’)
+Now, the data analyst starts working on the provided temporary view and selects all
+the data from the view using the following SQL statement but they are not able to
+view the result.
+SELECT * FROM silverDF;
+What could be the reason for non-working of the code?
+•
+Data engineer has registered the view which cannot be used in SQL as the
+name of the view and the DataFrame should be identical
+•
+Data analyst has used the DataFrame name instead of name of the view
+(Correct)
+•
+Data engineer has used wrong function, createTable() should have been
+used
+•
+There is no way a PySpark DataFrame can be used in Spark SQL
+•
+Data analyst should run the query inside spark.sql() function
+Explanation
+This is an easy picker. The SELECT query is using the DataFrame name while
+the reference to the DataFrame has already been created by the
+name silver_table. The correct way of writing this SQL query would be SELECT *
+FROM silver_table;
+Also remember, whenever you need to reference a PySpark DataFrame in SQL, you
+can register the DataFrame as a temporary view
+50
+using createOrReplaceTempView() operation. You can then run your SQL query using the name of the newly created temporary view.
+More Info: Using PySpark DataFrame in SQL
+51
+Question 28
+A data engineer needs to control the schema for some of the columns while reading
+the raw JSON data to the Bronze table using AutoLoader. Which of the following is
+the most efficient way of controlling the schema?
+•
+Use trigger
+•
+It is not possible to define schema
+•
+Use schemaHints
+(Correct)
+•
+Contact the Databricks Administrator
+•
+Use outputMode as ‘append’
+Explanation
+Suppose, you are ingesting JSON data to the Bronze table and one of the columns
+contains marks of students containing only integer values. Automatically, all the
+columns are casted to string. If you want the marks column to be casted as
+an integer column in the Bronze table, you need to
+append option("cloudFiles.schemaHints", "marks INT").
+Remember, if an unsupported data is encountered, the value will be converted to
+NULL. That is the reason, you should use schemaHints only if you are sure about the
+data type.
+More Info: Using schemaHints in AutoLoader
+52
+Question 29
+A data engineer, who is working on Bronze to Silver hop in medallion architecture,
+wants to join performers and events tables on location column and retrieve all the
+records from the performers table but only matching records from the events table.
+What type of join can be used to accomplish the task?
+The performers table contains details like name, genre, performer_id etc. of all
+the performers associated with the company and the events table contains details
+of all the events like concerts, standup shows etc. and performer_id of the
+performers who performed at the event.
+•
+LEFT JOIN
+•
+RIGHT JOIN
+•
+INNER JOIN
+•
+OUTER JOIN
+•
+Any one from A (LEFT JOIN) and B (RIGHT JOIN)
+(Correct)
+Explanation
+As all the records from one table and only the matching records from the other table
+need to be retrieved, you can use LEFT JOIN as well as RIGHT JOIN. If you want to
+use LEFT JOIN, you can keep the performers table as LEFT table and events table
+as RIGHT table. If you want to perform a RIGHT JOIN, you can use the events table
+as LEFT table and performers table as RIGHT table.
+More Info: Joins in SQL
+53
+Question 30
+The following Python code block intends to perform the Silver-Gold transition as a
+part of multi-hop architecture to find out the maximum products from each country.
+The source table is warehouse whereas the target table is max_products. What
+should replace the blank to run the code correctly?
+1. spark.table(“warehouse”)
+2. .groupBy(“country”)
+3. ____________________
+4. .write
+5. .table(“max_products”)
+•
+.agg(max(products))
+•
+.agg.max.products
+•
+.agg.max(“products”)
+•
+.agg(max(“products”))
+(Correct)
+•
+.max(agg(“products”))
+Explanation
+Correct code block for Silver-Gold transition:
+1. spark.table(“warehouse”)
+2. .groupBy(“country”)
+3. .agg(max(“products”))
+4. .write
+5. .table(“max_products”)
+As the
+54
+Question demands the maximum number of products from each country, aggregate function i.e. agg() function can be used while max() function can be passed as an argument to the agg() function.
+Also note, Silver to Gold transition always (at least most of the times) involves aggregation.
+More Info: Aggregating data in PySpark
+55
+Question 31
+Which keyword(s) should be added to make a table or a view a Delta Live Table?
+•
+DELTA
+•
+LIVE
+(Correct)
+•
+DELTA LIVE
+•
+STREAMING
+•
+No keyword is required as every table in Databricks is DLT, by default.
+Explanation
+This is an easy picker. If you add a LIVE keyword before a table or a view, you force
+the system to treat them as a DLT (Delta Live Table).
+More Info: Delta Live Tables in Databricks
+56
+Question 32
+Which of the following about checkpointing is true for a streaming job in Databricks?
+•
+Checkpointing is used for checking the faulty data in a table
+•
+Checkpointing helps in making a job fault tolerant
+(Correct)
+•
+Checkpointing can increase the risk of failure
+•
+Checkpointing helps in parallel processing of jobs
+•
+Checkpointing is used for scheduling a job in CRON syntax
+Explanation
+Checkpointing helps in making a job fault tolerant by
+creating checkpoints and restarting the job from the checkpoints in case of failure.
+It is an essential feature for streaming jobs which is why Databricks encourages you
+to enable checkpointing if you want your job to be fault tolerant.
+More Info: Advantages of using checkpointing in Structured Streaming queries
+57
+Question 33
+Which of the following hops is known for transitioning timestamps into a humanreadable
+format?
+•
+Raw to Bronze
+•
+Bronze to Silver
+(Correct)
+•
+Silver to Gold
+•
+Raw to Gold
+•
+Gold to Silver
+Explanation
+As part of Silver table enrichments, timestamps are converted to humanreadable
+format. So, the correct hop from the above options is Bronze to Silver hop.
+Let us also discuss what are the main functionalities of other hops in multi -hop
+architecture.
+Raw to Bronze – Apply schema to the raw data.
+Bronze to Silver – Conversion of timestamps into human-readable format and
+performing joins with other tables.
+Silver to Gold – Performing aggregations.
+More Info: Medallion architecture in Databricks
+58
+Question 34
+A data engineer gets a lot of files in an AWS S3 directory specified by a Python
+variable loc. The frequency of files is not uniform. Someday only 3-4 files are
+received while some days it is more than 100. They need to load the new data
+received into the users table every hour. Which of the following is the most efficient
+and time-saving technique?
+•
+Use AutoLoader with default processingTime to trigger
+•
+Use AutoLoader with processingTime as 60 minutes to trigger the job
+(Correct)
+•
+Manually run the job every hour
+•
+Use AutoLoader with Multi-Hop Architecture
+•
+Use AutoRun to run the job every 60 minutes
+Explanation
+Let us examine all the options one by one.
+Use AutoLoader with default processingTime to trigger
+INCORRECT. Although AutoLoader is a correct choice for this scenario but default
+processing time is 5 seconds. According to the
+59
+Question, you need to load the data every hour. So, this will not be an efficient solution (as asked in the
+60
+Question).
+Use AutoLoader with processingTime as 60 minutes to trigger the job
+CORRECT. Using AutoLoader with custom processing time of 60 minutes is the most efficient and time saving option.
+Manually run the job every hour
+INCORRECT. This is an alternative solution but the
+61
+Question demands most efficient and time saving technique.
+Use AutoLoader with Multi-Hop Architecture
+INCORRECT. Multi-Hop architecture is used for incremental data processing and not to run a job at specified intervals of time.
+Use AutoRun to run the job every 60 minutes
+INCORRECT. There is no AutoRun command or feature in Databricks.
+More Info: Using processingTime with AutoLoader in Databricks
+62
+Question 35
+Which of the following is not one of the features of SQL endpoint?
+•
+SQL endpoint supports multiple cluster size options
+•
+SQL endpoint comes with an Auto-stop feature which can be used to shut
+down the endpoint after specified time
+•
+SQL endpoint can be scaled to multiple clusters
+•
+SQL endpoint can be used to run Java applications while preserving the SQL
+queries
+(Correct)
+•
+SQL endpoint can be connected with tools like Tableau and Power BI using
+the connection details provided by the Databricks for each SQL endpoint
+Explanation
+With a recent update from Databricks, SQL endpoint is now known as SQL warehouse.
+This
+63
+Question tests your in-depth knowledge on SQL endpoints(warehouses). SQL endpoints(warehouses) have a lot of features but you cannot use them to run Java applications. A SQL endpoint(warehouse) is specially built to run SQL queries.
+I will encourage you to read all the other options as they are some of the features of an SQL endpoint(warehouse). These can come handy in the actual exam.
+More Info: SQL warehouse(formerly known as SQL endpoint) in Databricks
+64
+Question 36
+Which of the following correctly depicts the relationship between a job and a task in
+Databricks Workflow?
+•
+A task consists of one or more jobs which can run linearly or in parallel
+•
+Job and task are always equal in any Databricks Workflow
+•
+A job can consist of number of tasks
+(Correct)
+•
+Number of jobs in a Workflow is always greater than the number of tasks
+•
+There is no relationship between a job and a task in Databricks Workflow as
+they are independent of each other.
+Explanation
+Let us look at each option one by one.
+A task consists of one or more jobs which can run linearly or in parallel
+INCORRECT. It is just the opposite of that. A job consists of single or multiple tasks.
+Job and task are always equal in any Databricks Workflow
+INCORRECT. This is a tricky one as the number of jobs and tasks can
+be equal but not always. Mostly, a single job contains several tasks which run one
+by one or parallelly as per the logic.
+A job can consist of number of tasks
+65
+CORRECT. While creating a job, you can add a number of tasks to it. The type of tasks includes Databricks notebooks, JAR files, Python scripts etc.
+Number of jobs in a Workflow is always greater than the number of tasks
+INCORRECT. A single job contains a number of tasks as part of a Workflow.
+There is no relationship between a job and a task in Databricks Workflow as they are independent of each other.
+INCORRECT. Job and task are not independent to each other as a task is a part of a job. You can think of a job as a box and tasks as balls in that box.
+More Info: Workflows with jobs and tasks in Databricks
+66
+Question 37
+A team of data analysts is working on a DLT pipeline using SQL which updates the
+real time weather conditions in different parts of the country. One of the data
+analysts need to look at the quality of the data loaded to the system. They need to
+drop the row which has NULL value in temperature column. Which of the following
+SQL statements should be added by them to accomplish this task?
+•
+CONSTRAINT temp_in_range EXPECT (temperature is NOT NULL)
+•
+CONSTRAINT temp_in_range EXPECT (temperature is NOT NULL) ON
+VIOLATION DROP ROW
+(Correct)
+•
+CONSTRAINT temp_in_range EXPECT (temperature is NOT NULL) ON
+VIOLATION FAIL UPDATE
+•
+CONSTRAINT temp_in_range EXPECT (temperature is NULL) ON VIOLATION
+DROP ROW
+•
+CONSTRAINT temp_in_range EXPECT (temperature is NOT NULL) ON
+VIOLATION DELETE ROW
+Explanation
+Before answering this
+67
+Question let us first understand what are the different ways to handle the violations while working with DLT using SQL. There are three types of violation handling.
+1. Failing the pipeline altogether once a violation is encountered
+2. Dropping the record causing violation and proceeding with the next record
+3. Reporting the violations in metrics while adding that record to the target table
+Let us see the syntax for all three: 1. CONSTARINT constraint_name EXPECT (condition) ON VILOATION FAIL UPDATE – As soon as the condition is not met, the pipeline will fail 2. CONSTARINT constraint_name EXPECT (condition) ON VILOATION DROP ROW – If the condition is not met, the record will be dropped 3. CONSTARINT constraint_name EXPECT (condition) – The row will be added to the target table but the record will be shown under failed_records in the Data Quality dashboard.
+As the
+68
+Question states that you need to drop the row violating the NOT NULL constraint of the temperature column, adding CONSTRAINT temp_in_range EXPECT (temperature is NOT NULL) ON VIOLATION DROP ROW will get the desired results.
+More Info: Data quality constraints in Delta Live Tables
+69
+Question 38
+Which of the following about the cron scheduling of jobs in Databricks is correct?
+•
+Cron scheduling can be used for Manual schedule type
+•
+Cron scheduling can be used for creating a new cluster
+•
+Cron scheduling should be set in Data tab from left side menu
+•
+Cron scheduler supports time zone selection
+(Correct)
+•
+Cron scheduled jobs cannot be edited
+Explanation
+Let us look at each statement one by one.
+Cron scheduling can be used for Manual schedule type
+INCORRECT. For scheduling a job, Scheduled is to be selected in Schedule Type tab.
+Cron scheduling can be used for creating a new cluster
+INCORRECT. cron scheduling is used to schedule a job. New clusters cannot be
+created using cron syntax.
+Cron scheduling should be set in Data tab from left side menu
+INCORRECT. For using cron scheduler, you need to go to Jobs tab from left side
+menu.
+70
+Cron scheduler supports time zone selection
+CORRECT. For scheduling a job, starting time, time interval and time zone can be selected.
+Cron scheduled jobs cannot be edited
+INCORRECT. You can always edit the job even if it is scheduled using cron job scheduler.
+More Info: Cron job scheduling in Databricks
+71
+Question 39
+As a data engineer you need to create a football match scorecard for all the users
+who log into your website. The team has decided to go with the DLT pipeline and put
+arguments on which type of pipeline to be used for this project i.e. continuous or
+triggered pipeline. Which of the following arguments made by the members of your
+team is incorrect?
+•
+Member A states - A continuous pipeline assures that the end users will get
+the latest score as they log in to the website
+•
+Member B says - By using a continuous pipeline our cost will decrease
+(Correct)
+•
+Member C thinks - The triggered pipeline will make the score refresh rate
+very slow
+•
+Member D writes - For live events like a soccer match we should use a
+continuous pipeline
+•
+Member E proposes – Triggered pipelines can be scheduled or run manually
+Explanation
+It seems like member B has not done their research properly about the DLT
+pipelines. As you (should) know DLT pipelines can be categorized in two parts based
+on their continuity or refresh rate.
+First one being the triggered pipeline and other one the continuous pipeline.
+The continuous pipeline, as the name suggests, is better suited for real time
+data (such as a live event sending some amount of data) and requires a running
+cluster which makes this a costly option.
+On the other hand, the triggered pipeline fetches the data from the source as soon
+as it is triggered, and the cluster runs only till the pipeline is being executed. This
+makes clear that member B is not correct since by using a continuous pipeline you
+tend to incur more compute costs (but the performance will increase).
+More Info: Triggered vs Continuous pipelines in Databricks
+72
+Question 40
+An organization wants to decrease their cost of SQL endpoint which is currently
+used by only one of their data analysts to query the data once or twice daily. The
+queries are not complex and can afford latency. What al l steps can be taken in order
+to decrease the cost incurred?
+•
+Select the minimum cluster size
+•
+Turn on the Auto-stop feature
+•
+Select minimum values for Scaling the endpoint
+•
+All of the above can help in reducing the cost
+(Correct)
+•
+None of the above
+Explanation
+Let us look at all the options and try to understand which of these can actually help
+us in saving the costs.
+Select the minimum cluster size
+The cost of an endpoint is measured in DBU/hour. Thus, decreasing the cluster size
+will help in decreasing the cost as the number of DBUs are proportional to the cluster
+size.
+Turn on the Auto-stop feature
+The cost of a SQL endpoint also depends on the number of hours it remains active.
+In order to decrease the cost, you can turn on the Auto-stop feature which
+automatically turns off the endpoint after the specified minutes of inactivity.
+73
+Select minimum values for Scaling the endpoint
+By selecting minimum values for scaling, the number of DBUs decreases which, in turn, decreases the overall cost.
+Hence, option D is correct as all these techniques help in reducing the cost.
+As per the latest changes from Databricks, SQL endpoint has been renamed to SQL warehouse.
+More Info: Reducing cost of a SQL endpoint(now known as SQL warehouse)
+74
+Question 41
+Which of the following can be called as the unit of computation cost while creating a
+DLT pipeline?
+•
+DPU/hour
+•
+DPU/second
+•
+DBU/hour
+(Correct)
+•
+Number of seconds
+•
+Number of hours
+Explanation
+DBU stands for Databricks Unit. The number of Databricks units consumed per
+hour is the total cost of your DLT pipeline.
+More Info:
+75
+Question 42
+Your colleague needs to provide select and metadata read permissions on
+database app_test to a user named abc. They have written the following query to
+grant the permission.
+GRANT SELECT, READ_METADATA TO DATABASE app_test ON `abc`
+What should be changed in the above statement to make this work?
+•
+GRANT should be replaced with GRANTS as there are multiple grants in one
+statement
+•
+READ_METADATA should be omitted as all the users have metadata read
+permission
+•
+READ_METADATA should be omitted as granting SELECT permission implies that
+the user can read the metadata
+•
+The position of ON and TO should be swapped
+(Correct)
+•
+DATABASE keyword should be replaced by CATALOG
+Explanation
+Correct code block:
+GRANT SELECT, READ_METADATA ON DATABASE app_test TO `abc`
+The query seems to be correct but the positions of TO and ON should be swapped. ON
+DATABASE comes first with the database name which is followed by TO while
+specifying the name of the user or group to which the grant needs to be issued. Also
+note, GRANTS is also a valid keyword but is used to view the grants on a specific data
+object like database, table etc.
+More Info: GRANT syntax to grant permissions to users and groups in Databricks
+76
+Question 43
+A data engineer has created a request table. Another data engineer has joined the
+team and needs all the privileges to that table. The data engineer does not
+remember the SQL command and wants to use the UI to grant permissions. Which of
+the following can be used by them to accomplish the task?
+•
+AutoLoader
+•
+Data Explorer
+(Correct)
+•
+Git
+•
+Multi-Hop architecture
+•
+Data Lakehouse
+Explanation
+Data Explorer can be used for all the permissions related tasks. Data Explorer can be
+used for various activities like managing ownership and permissions of databases
+and tables, viewing schema and properties of the tables and the databases etc.
+More Info: Using Data Explorer for managing permissions in Databricks
+77
+Question 44
+Which of the following is true for the features of Unity Catalog in Databricks?
+•
+Unity catalog is based on ANSI SQL
+•
+It allows fine-grain access to specific rows and column
+•
+Unity catalog can be used to govern data on different clouds
+•
+Unity catalog can control your existing catalogs
+•
+All of the above
+(Correct)
+Explanation
+All the above options describe the features of Unity Catalog. I will encourage you
+to read all the options as you may experience a
+78
+Question on Unity Catalog in the actual exam as well. Knowing these features will help you in answering the
+79
+Question involving Unit Catalog with confidence.
+More Info: Advantages of using Unity Catalog
+80
+Question 45
+Which of the following SQL statements can be used by the Databricks admin to
+change the owner of database error_logs to user dan@nad.adn
+•
+ALTER DATABASE error_logs OWNERSHIP TO `dan@nad.adn`
+•
+GRANT OWNER FOR SCHEMA error_logs TO `dan@nad.adn`
+•
+CHANGE OWNER TO `dan@nad.adn` FOR SCHEMA error_logs
+•
+ALTER DATABSE error_logs GRANT OWNER TO `dan@nad.adn`
+•
+ALTER SCHEMA error_logs OWNER TO `dan@nad.adn`
+(Correct)
+Explanation
+Before answering this
+81
+Question, you should know who can transfer the ownership of data objects like tables and databases. The transfer of ownership can be carried by the current owner of the object or the Databricks admin only. The following is the syntax for assigning a new owner to a database(schema): ALTER SCHEMA schema-name OWNER TO `user-name` Also note, SCHEMA and DATABASE can be used interchangeably.
+More Info: Transferring ownership of a data object
+
+
+1
+Question 1
+A data engineer has joined a team which is using Databricks notebooks with Git
+integration. The data engineer needs to clone the Git repository in Databricks to start
+collaborating with the team. Which of the following tabs from the left menu bar
+should the data engineer select to clone the remote repository?
+• Repos
+• Jobs
+• Data
+• Git
+• VCS
+Explanation
+If you need to clone a Git repository, you need to select Repos tab from the left side
+menu. You, then, need to click on the Add Repo option and clone the required Git
+repository using the URL and the Git provider of the repository.
+Some of the most commonly used Git providers supported by Databricks are:
+• BitBucket
+• GitHub
+• GitLab
+• AWS CodeCommit
+More Info: Clone a remote Git repository
+2
+Question 2
+Which of the following is TRUE about a Job cluster in Databricks?
+• A Job Cluster can be created using the UI, CLI or REST API
+• Multiple users can share a Job cluster
+• Job clusters can be restarted as per need
+• The Job cluster terminates when the Job ends
+• Job cluster works only with Python Language notebooks
+Explanation
+Let us look at the options and see which option is correct for a job cluster.
+A Job Cluster can be created using the UI, CLI or REST API
+INCORRECT. A job cluster is created by the job scheduler when you run a job. It
+cannot be created using the UI, CLI or REST API.
+Multiple users can share a Job cluster
+INCORRECT. A job cluster cannot be shared between users as it is automatically
+created and terminated.
+Job clusters can be restarted as per need
+INCORRECT. An all-purpose cluster can be restarted as per need, but a job cluster is
+for one-time use only.
+The Job cluster terminates when the Job ends
+CORRECT. As it is a one-time use cluster, it is terminated as the job ends.
+3
+Job cluster works only with Python language notebooks
+INCORRECT. A job cluster is not confined to Python language notebooks, it can be used for other languages notebooks too.
+As you would know, there are two types of clusters in Databricks - a job cluster and an all-purpose cluster.
+Additionally, let's quickly check which of the above options are true for an all-purpose cluster.
+1. An all-purpose cluster can be created using the UI, CLI or REST API - TRUE
+2. Multiple users can share an all-purpose cluster - TRUE
+3. All-purpose clusters can be restarted as per need - TRUE
+4. An all-purpose cluster terminates when the job ends - FALSE
+5. All-purpose clusters works only with Python language notebooks - FALSE
+Also note, the clusters (any type) can be used with any language supported by Databricks notebooks. A cluster is not bound to a language. Same cluster can run Python code and can also be used for executing SQL statements. The clusters are not language dependent.
+More Info: Clusters in Databricks
+4
+Question 3
+Which of the following is NOT one of the magic commands that can be used in a
+Databricks notebook?
+•
+%sql
+•
+%java
+•
+%python
+•
+%r
+•
+%scala
+Explanation
+Magic commands are an integral part of Databricks notebooks. Let’s take a case
+where you need to use a Scala code inside a notebook that has its default language
+set to Python. In this case, you can easily use %scala as the first line of the cell
+which turns the cell into a Scala cell while enjoying Python in the rest of the cells of
+the notebook.
+There are 4 language specific magic commands supported in Databricks notebook
+i.e. %sql, %python, %r and %scala while %java is not a valid magic command.
+More Info: Language Magic Commands
+5
+Question 4
+As a data engineer, you have seen that a large number of files for employees table is
+taking a lot of memory. These files are nothing but the versioned history of
+the employees table. You need to remove the files from the system and keep only the
+files that are maximum 2 days old. Your colleague has written the following query.
+VACUUM employees RETAIN 2 DAYS
+What should be corrected to run this query?
+•
+RESTORE command should be used instead of VACUUM
+•
+RETAIN FOR 2 DAYS should be used
+•
+You cannot delete the old files for just one table, you need to add database
+name as VACUUM is a database level operation
+•
+VACUUM accepts value in HOURS and not DAYS, 2 DAYS should be replaced
+with 48 HOURS
+•
+DRY RUN should be used at the end of the SQL statement
+Explanation
+Correct code block:
+VACUUM employees RETAIN 48 HOURS
+The reason behind this answer is that the VACUUM command accepts values
+in hours and not days.
+More Info: Using VACUUM to remove unused files
+6
+Question 5
+You are working as a data engineer in XYZ company. A delta
+table department already exists but now you need to change the schema. Another
+data engineer has written a SQL statement to create the table with the latest
+Databricks Runtime, but it is not working as desired. What can be the error in the
+following SQL statement?
+1. CREATE OR REPLACE department
+2. (roll_no int, name string);
+•
+USING DELTA should be added at the end of SQL statement
+•
+TABLE keyword is missing before department
+•
+The brackets around schema should be removed
+•
+CREATE TABLE IF NOT EXISTS should be used instead of CREATE OR REPLACE
+•
+The department table should be dropped first using DROP command as you
+cannot overwrite a Delta table
+Explanation
+Let’s look at all the options one-by-one.
+USING DELTA should be added at the end of SQL statement
+INCORRECT. As all the tables are created using DELTA by default, adding USING
+DELTA at the end of the SQL statement is redundant.
+TABLE keyword is missing before department
+CORRECT. To create a table in SQL the following syntax is used. CREATE TABLE
+table_name(schema);
+7
+The brackets around schema should be removed
+INCORRECT. The brackets around the schema are correctly placed.
+CREATE TABLE IF NOT EXISTS should be used instead of CREATE OR REPLACE INCORRECT. CREATE TABLE IF NOT EXISTS is used when you need to create a table ONLY if it does not exist whereas in this case you need to re-create the table which already exists.
+The department table should be dropped first using DROP command as you cannot overwrite a Delta table
+INCORRECT. A Delta table can be overwritten in the same way a RDBMS table is overwritten using SQL command
+More Info: CREATE TABLE command
+8
+Question 6
+Which of the following is NOT true about a Data Lake?
+•
+Data Lake can store structured, unstructured, and semi-structured data
+•
+Data in a Data Lake is stored in its original format
+•
+Defining schema on load is necessary in a Data Lake
+•
+Data Lake can be used to store real time data
+•
+Databricks Lakehouse combines the features of Data Lake and Data
+Warehouse
+Explanation
+All the options except the third one are TRUE. Let’s put Data Lake in simpler terms.
+You can think of Data Lake as a folder in your computer in which you have stored
+some parquet files, a directory filled with JSON data, data coming from a Kafka
+Stream and RDBMS backup etc. There is no schema change as the data enters the
+Data Lake as the data enters the data lake in its original format. Thus, defining
+schema on load is not required.
+More Info: Data Lakes | Databricks Lakehouse
+9
+Question 7
+Your fellow data engineer is using a Databricks notebook which is defaulted to
+Python language. They need to have an interactive view of the data on which they
+can plot a graph. They try to run the following query on an aggregated Gold
+table avg_scores, but they are not able to see the output data.
+spark.sql("SELECT * FROM avg_scores")
+What is the reason that they are not able to view the data?
+•
+Databricks does not support querying SQL table in a Python cell
+•
+As it is a Python cell, show() operation should be applied to get the contents
+•
+The cell’s language should be changed to SQL and the cell should be
+executed again
+•
+The spark.sql() function should be passed as an argument to
+the display() function to view the data
+•
+The argument passed to the spark.sql() function should not be enclosed in
+quotes
+Explanation
+This is an interesting
+10
+Question. Let us look at all the options one by one.
+Databricks does not support querying SQL table in a Python cell
+INCORRECT. Databricks supports this through a special Spark SQL function - spark.sql()
+As it is a Python cell, show() operation should be applied to get the contents INCORRECT. show() operation can be used to view the data but it cannot be used to view the interactive data on which plotting can be performed in Databricks.
+The cell’s language should be changed to SQL and the cell should be executed again INCORRECT. By changing the cell’s language to SQL, you cannot run spark.sql() as it is a Python specific function.
+The spark.sql() function should be passed as an argument to the display() function to view the data CORRECT. In order to view the desired result, you need to use display() function provided by Databricks i.e. display(spark.sql(“SELECT * FROM avg_scores”))
+The argument passed to the spark.sql() function should not be enclosed in quotes INCORRECT. The SQL query passed to the spark.sql() function should always be a string.
+More Info: Using display() function for visualization
+11
+Question 8
+Which of the following is false about an external table?
+•
+An external table is also called as unmanaged table
+•
+When an external table is dropped, only the metadata is deleted from the
+system and the data remains intact
+•
+External table never specify LOCATION while creating the table
+•
+Registering an external table to a different database is easy as no data
+movement is required
+•
+Databricks manages only metadata for an external table
+Explanation
+All the options except the third one (Option C) are TRUE. When creating an
+unmanaged or external table specifying the location of the data is a must.
+More Info: Unmanaged or External table in Databricks
+12
+Question 9
+The following statement intends to select all the records from version 6 of
+table testing_logs. Which of the following should replace the blank to achieve the
+task?
+SELECT * FROM testing_logs __________
+•
+VERSION 6
+•
+ROLLBACK TO 6
+•
+VERSION AS OF 6
+•
+ROLLBACK AS OF 6
+•
+‘VERSION = 6’
+Explanation
+VERSION command provides you with the ability to query previous versions of your
+table.
+Correct code block: SELECT * FROM testing_logs VERSION AS OF 6
+Also note, SELECT * FROM testing_logs@v6 can also be used.
+More Info: Select data from previous version of a table | Using @ syntax
+13
+Question 10
+Which of the following commands fails to return the metadata of flights table?
+•
+DESC EXTENDED flights
+•
+DESCRIBE DETAIL flights
+•
+DESC flights
+•
+DESCRIBE HISTORY flights
+•
+DESC PRIVACY flights
+Explanation
+The DESCRIBE or DESC command is used to get the basic structure of data objects
+like tables, databases etc. Some more keywords like EXTENDED, DETAIL, HISTORY can
+be used in conjunction with the DESCRIBE or DESC command but PRIVACY is not one
+of them.
+More Info: DESCRIBE COMMAND | DESCRIBE HISTORY
+14
+Question 11
+Which of the following magic commands can be used to run a notebook from
+another notebook?
+•
+%run_notebook
+•
+%run
+•
+%runNotebook
+•
+%start
+•
+%start_notebook
+Explanation
+%run is a special magic command that can be used to run a notebook from another
+notebook. Rest of the options are not valid magic commands in Databricks
+notebook.
+More Info: %run command in Databricks
+15
+Question 12
+A junior data engineer from your team wants to insert 5 records in
+the employees table. They have come up with the following set of SQL queries.
+1. INSERT INTO employees VALUES (234, ‘Erich Heard’);
+2. INSERT INTO employees VALUES (209, ‘Paul Fosbury’);
+3. INSERT INTO employees VALUES (141, ‘Ricky Matt’);
+4. INSERT INTO employees VALUES (940, ‘Jeff Sims’);
+5. INSERT INTO employees VALUES (744, ‘Chriss Holmes’);
+Each of the statements is processed as a separate transaction and you need to
+modify the statement to be able to insert all 5 records in one go. Which of the
+following SQL statements can be used to insert these 5 records in a single
+transaction?
+•
+1. INSERT INTO TABLE employees VALUES
+2. (234, ‘Erich Heard’),
+3. (209, ‘Paul Fosbury’),
+4. (141, ‘Ricky Matt’),
+5. (940, ‘Jeff Sims’),
+6. (744, ‘Chriss Holmes’);
+•
+1. INSERT INTO employees MULTIPLE VALUES
+2. (234, ‘Erich Heard’),
+3. (209, ‘Paul Fosbury’),
+4. (141, ‘Ricky Matt’),
+5. (940, ‘Jeff Sims’),
+6. (744, ‘Chriss Holmes’);
+•
+1. INSERT INTO employees ‘5’ VALUES
+2. (234, ‘Erich Heard’),
+3. (209, ‘Paul Fosbury’),
+4. (141, ‘Ricky Matt’),
+5. (940, ‘Jeff Sims’),
+6. (744, ‘Chriss Holmes’);
+•
+1. INSERT INTO employees VALUES
+2. (234, ‘Erich Heard’),
+3. (209, ‘Paul Fosbury’),
+4. (141, ‘Ricky Matt’),
+5. (940, ‘Jeff Sims’),
+6. (744, ‘Chriss Holmes’);
+•
+1. INSERT INTO employees
+2. (234, ‘Erich Heard’),
+3. (209, ‘Paul Fosbury’),
+4. (141, ‘Ricky Matt’),
+5. (940, ‘Jeff Sims’),
+6. (744, ‘Chriss Holmes’);
+Explanation
+The correct code block is:
+1. INSERT INTO employees VALUES
+16
+2. (234, ‘Erich Heard’),
+3. (209, ‘Paul Fosbury’),
+4. (141, ‘Ricky Matt’),
+5. (940, ‘Jeff Sims’),
+6. (744, ‘Chriss Holmes’); Rest of the options are not syntactically correct. The INSERT query works the same way for adding multiple records as it works for adding a single record. You can provide comma separated rows to add them in one go.
+More Info: Multi-row insert into a table
+17
+Question 13
+You have created a new managed table members in the company database using the
+following set of SQL statements:
+1. CREATE DATABASE IF NOT EXISTS company;
+2. USE company;
+3. CREATE OR REPLACE TABLE members(id int, name string);
+What will be the location of the newly created table?
+•
+dbfs:/user/warehouse/company.db/
+•
+dbfs:/hive/warehouse/company/
+•
+dbfs:/user/hive/company/
+•
+dbfs:/user/hive/warehouse/company.db/
+•
+dbfs:/user/lakehouse/company.db/
+Explanation
+This is a trick
+18
+Question. First of all, you should know that the database has been created without any LOCATION parameter which means that the database will be created at the default location. The default location for a database is always dbfs:/user/hive/warehouse/ Now, as the name of the database is company, a directory named company.db will be created in the above location and thus the data for the members table will be stored in company.db directory. So, correct path for the members data storage is dbfs:/user/hive/warehouse/company.db/ SCHEMA and DATABASE can be used interchangeably i.e. CREATE SCHEMA is equivalent to CREATE DATABASE
+If you do not specify the location while creating the database, the database will always be created at the default location. A trick to remember the default location of the database is UHW i.e. User Hive Warehouse.
+More Info: Default location for CREATE DATABASE command
+19
+Question 14
+Which of the following statements defines a Python function get_column() which
+accepts a column name and prints the values in that column from payments table?
+•
+1. def get_column(column_name):
+2. spark.sql(f“SELECT {column_name} from payments”)
+•
+1. define get_column(column_name):
+2. display(spark.sql(f“SELECT {column_name} from payments”))
+•
+1. function get_column(column_name):
+2. spark.sql(“SELECT {column_name} from payments”).show()
+•
+1. def get_column(column_name):
+2. spark.sql(f“SELECT {column_name} from payments”).show()
+•
+1. def get_column(column_name):
+2. spark.sql(“SELECT column_name from payments”)
+Explanation
+To answer this
+20
+Question you need to know the syntax of a Python function. The simplest Python function uses the following syntax:
+1. def function_name(parameters):
+2. function_body
+You can also provide parameters' data types and return type in the function definition but are completely optional.
+1. def function_name(parameter1: data_type, parameter2: data_type) -> return_type:
+2. function_body
+Please note, the Python function follows indentation and no brackets to define the function body.
+Also, this
+21
+Question checks your knowledge on formatted strings in Python. Using formatted strings or f-strings, you can make your SQL statement more readable by using Python variables in between the SQL statements using {}
+The formatted strings are mainly used to print the formatted data that makes your code easily traceable and maintainable.
+Correct code block:
+1. def get_column(column_name):
+2. spark.sql(f“SELECT {column_name} from payments”).show()
+If you are new to Python language, do not forget that a function is defined in Python using def keyword. It will be helpful for you to remember this for the actual exam.
+More Info: Formatted strings in Python
+22
+Question 15
+You, as a data engineer, want to use a SQL query in a Python function. What
+approach can you follow?
+•
+spark.sql() function should be used to run the SQL query
+•
+Change the cell’s language to SQL as the SQL cell allows the usage of
+Python code as well
+•
+SQL query cannot be accessed inside Python code
+•
+pyspark.sql() function should be used to run the SQL query
+•
+Install Spark SQL driver to run the query
+Explanation
+If you are using a Databricks notebook, spark.sql() is an essential part of your code
+as it can be used to run SQL queries inside a Python cell. sql() is a function on
+a SparkSession object. In Databricks, spark is an object of SparkSession and that is
+the reason you can use spark.sql(query) to run a SQL query on a view or a table.
+More Info: Using spark.sql() to run SQL queries in Python
+23
+Question 16
+A data analyst has created an empty delta table named passengers. The data
+analyst needs to make sure that the age of the new passengers should be less than
+60. Which of the following statements will ensure that all the incoming records
+have age column’s value less than 60?
+•
+ALTER TABLE passengers ADD check_age CHECK (age < 60)
+•
+ALTER TABLE passengers ADD CONSTRAINT check_age (age < 60)
+•
+ALTER passengers ADD CONSTRAINT check_age CHECK age < 60
+•
+ALTER TABLE passengers ADD CONSTRAINT check_age CHECK (age < 60)
+•
+ALTER passengers ADD CONSTRAINT check_age CHECK (age < 60)
+Explanation
+Once a table has been created, a need to add or drop a constraint can arrive. You can
+use the ALTER command to add or drop a constraint. According to the
+24
+Question, you need to add a check constraint to the table. The following is the syntax if you want to add a check constraint to the table. ALTER TABLE table_name ADD CONSTRAINT constraint_name CHECK (condition)
+The only option which correctly follows the syntax is option D. Hence, is correct.
+More Info: Adding a Check constraint on a table
+25
+Question 17
+A data engineer has created a Global Temp View new_trains. Which of the following
+SQL statements will show the contents of new_trains view?
+•
+SELECT * FROM new_trains
+•
+SELECT * FROM global.new_trains
+•
+SELECT * FROM global_temp.new_trains
+•
+SELECT * FROM temp_global.new_trains
+•
+SELECT * FROM temp.new_trains
+Explanation
+The global temporary views are registered in a temporary database
+named global_temp. So, to access the view you need to add global_temp before the
+name of the view i.e. global_temp.new_trains
+More Info: Global Temporary View
+26
+Question 18
+The following SQL statement intends to delete all the records from
+the employees table that contains string ‘Ex’ in employee_code column. Find the
+error in the statement.
+DELETE VALUES from employees WHERE employee_code like ‘Ex%’
+•
+Wildcards like % cannot be used in WHERE clause
+•
+IF should be used instead of WHERE
+•
+TABLE keyword should be used after table name i.e. employees
+•
+VALUES should not be used in DELETE statements
+•
+ALL VALUES should be used instead of VALUES in DELETE statements
+Explanation
+Correct SQL statement:
+DELETE from employees WHERE employee_code like ‘Ex%’
+Also note, the VALUES keyword is not used while deleting data from a table.
+More Info: Using DELETE for deleting data from a table
+27
+Question 19
+Which of the following Spark SQL functions can be used to convert an array column
+in a Delta table into multiple rows, with each row containing individual elements of
+the array?
+•
+SELECT
+•
+FILTER
+•
+TRANSFORM
+•
+EXPLODE
+•
+EXPLODE_ARRAY
+Explanation
+EXPLODE is an important function to deal with complex data types like arrays. This
+can explode the array to distribute each element into a new row.
+Let us look at some sample data from the olympics table to understand more
+about EXPLODE function.
+By running the following query on the olympics table, you can view the result of
+applying the EXPLODE function over the medals column.
+SELECT athlete, EXPLODE(medals) FROM olympics
+28
+You can notice how EXPLODE function enables you to get each element of an array in its individual row.
+More Info: EXPLODE function in Spark SQL
+29
+Question 20
+A data analyst needs to replace the contents of table tax_details with the contents
+of table new_tax_details Both the tables have identical schema but
+table new_tax_details contain an extra column named middle_name The data
+analyst has written the following query to execute the overwrite:
+1. INSERT OVERWRITE tax_details
+2. SELECT * FROM new_tax_details;
+What will be the outcome of the above query?
+•
+The data will be overwritten without any error
+•
+The data will be overwritten with a schema mismatch warning message
+•
+The query will fail with a schema mismatch error
+•
+The query will fail as INSERT OVERWRITE is not a valid command
+•
+The query will be executed without any errors or warnings but the data will
+not be overwritten
+Explanation
+INSERT OVERWRITE command helps to insert new data to a table while overwriting
+the old data but for the command to run smoothly, the schema of source
+data and target table should be identical. In this
+30
+Question, the schema of the source data and the target table is different which results in a schema mismatch error. Alternatively, to run the above query without any errors or warnings option("overwriteSchema", "true") can be added.
+More Info: Using INSERT OVERWRITE to overwrite a table in Spark SQL
+31
+Question 21
+Which of the following is not a valid operator which works on two or more tables?
+•
+UNION
+•
+INTERSECT
+•
+MINUS
+•
+PLUS
+•
+EXCEPT
+Explanation
+Let us see the usage of all the above operators one by one:
+UNION – Used for combining rows from the tables with similar schemas. The
+resultant table is the collection of all the rows from the two tables. Also note, the
+duplicate rows are dropped by default. To preserve duplicate rows, UNION
+ALL should be used.
+INTERSECT – Used for retrieving identical rows from the tables. The resultant table
+is the collection of rows which are present in both the tables. Also note, the duplicate
+rows are dropped, by default. To preserve duplicate rows, INTERSECT ALL should be
+used.
+MINUS – Used for getting the rows which are present in the first table but not the
+second one.
+PLUS – It is an invalid command
+EXCEPT – Same as MINUS command.
+More Info: Set Operators in SQL - EXCEPT | MINUS | UNION | INTERSECT
+32
+Question 22
+Which of the following describes the advantage of using higher-order functions in
+Spark SQL?
+•
+The higher-order functions increase the number of clusters for running
+Spark SQL in Databricks
+•
+The higher-order functions do not exist in Spark SQL
+•
+The higher-order functions help in directly working with complex data types
+•
+The higher-order functions can be used to combine two tables using
+the UNION operator
+•
+Higher-order functions can be used to speed up the ORDER BY query
+Explanation
+The higher order functions like FILTER, TRANSFORM, EXIST etc. are used for directly
+working with the complex data types like arrays.
+More Info: Higher-order functions in Spark SQL
+33
+Question 23
+A data engineer is working on SQL UDF which adds two
+columns salary and bonus to view the total salary of all the employees. The data
+engineer has defined the following SQL UDF which intends to perform the required
+task but the last line has been deleted by mistake. What should come in the last line
+of the function definition?
+1. CREATE FUNCTION total_salary(salary INT, bonus INT)
+2. RETURNS INT
+3. ___________
+•
+CONCAT(salary, bonus)
+•
+RETURN CONCAT(salary, bonus)
+•
+salary + bonus
+•
+RETURN salary + bonus
+•
+CONCAT(salary + bonus)
+Explanation
+While defining a UDF you need to return something, for which RETURN keyword
+should be used. Without using the RETURN keyword, the function definition will return
+an error.
+Now, two of the above options are using the RETURN keyword.
+But, the CONCAT function used in option B, will not add the values but rather combine
+them using string concatenation. Suppose, for one of the employees,
+the salary is 500000 and the bonus is 60000, concatenating the values will result
+in 50000060000.
+Surely, this is not required. So, you can discard this option.
+Option D uses the RETURN keyword and adds the salary and the bonus using +
+operator which sums the salary and bonus values and hence should be considered
+correct.
+34
+More Info: SQL UDF in Databricks
+35
+Question 24
+Which of the following statements precisely describe the difference between INSERT
+INTO and MERGE INTO for Delta tables in Databricks?
+•
+INSERT INTO can be used to insert and update to a table whereas MERGE
+INTO can be used for insert, update and delete.
+•
+MERGE INTO can be used to insert and update to a table whereas INSERT
+INTO can be used for insert and delete.
+•
+MERGE INTO can be used to insert, update and delete from/to a table
+whereas INSERT INTO can be used only to insert values to a table.
+•
+MERGE INTO can be used to insert and delete from/to a table whereas INSERT
+INTO can be used to insert, update and delete
+•
+Both MERGE INTO and INSERT INTO can be used to insert, update and delete
+from/to a table.
+Explanation
+The syntax for the simplest MERGE INTO statement is as follows:
+1. MERGE INTO table1
+2. USING table2
+3. ON condition
+4. WHEN MATCHED THEN action
+5. WHEN NOT MATCHED THEN action
+As you can see, there are different sets of actions when the record is matched or not
+matched. Usually, when the records are matched, they are updated or
+deleted whereas if the record is not matched it is inserted. Moreover, the INSERT
+INTO command can only be used to insert values in a table whereas MERGE INTO is
+more versatile as it can be used to perform insertion, deletion and updation in a
+table using a single statement.
+More Info: MERGE INTO | INSERT INTO
+36
+Question 25
+Which of the following about the Multi-hop architecture is true?
+•
+Multi-hop architecture can be used only for batch workloads
+•
+In Multi-hop architecture, the main task of the Bronze table is to apply the
+schema to the raw data
+•
+Multi-hop architecture can only be performed in SQL
+•
+For multi-hop architecture to perform quickly, SQL endpoints are necessary
+•
+Most of the multi-hop architectures include Gold-Diamond-Platinum tables
+Explanation
+In a multi-hop architecture, the Bronze table mainly performs the task of applying
+schema over the ingested data. Rest of the options are all false. The following are
+the major tasks of each table.
+Bronze – Apply schema to the raw data
+Silver – Conversion of timestamps into human readable format and performing joins
+with other tables
+Gold – Performing aggregations
+More Info: Multi-hop (medallion) architecture in Databricks
+37
+Question 26
+A data engineer is using AutoLoader for ingesting CSV data from S3 location. What
+should replace the blank to execute the code correctly.
+1. dataDF = spark.readstream._____________
+2. .option("cloudFiles.format", "csv")
+3. .option("cloudFiles.schemaLocation", schemaLocation)
+4. .load(source)
+•
+autoloader
+•
+format(“autoLoader”)
+•
+format(“cloudFiles”)
+•
+option(“autoLoader”)
+•
+option(“cloudFiles”)
+Explanation
+Whenever you need to use AutoLoader you need to use the format as cloudFiles.
+So, format(“cloudFiles”) will replace the blank to run the code correctly.
+More Info: Using cloudFiles format in AutoLoader
+38
+Question 27
+Which of the following users can use the Gold table as a source?
+•
+A user that needs to feed the raw data to a table
+•
+A user that needs to design a dashboard using aggregated data
+•
+A user that needs to add a column to the table
+•
+The Gold table is the end of multi-hop architecture and is not used by any
+user
+•
+A user that needs to join static data with streaming data to make the data
+richer
+Explanation
+Gold Table is the last layer in multi-hop architecture. It has all the aggregated data
+and can be consumed by the dashboards or reporting tools.
+More Info: Uses of Gold table in medallion architecture
+39
+Question 28
+A data analyst has created a Bronze table containing 20 million records by ingesting
+raw data. A data engineer wants to test the data by running a query over the table.
+The table, being a part of a production environment, cannot be used by the data
+engineer directly. The creation of views on the original table has also been restricted.
+Which of the following approaches can you suggest for the data engineer to quickly
+test the data?
+•
+The data engineer can create DEEP CLONE of the table and run the query over
+the newly created table
+•
+The data engineer can request the data analyst to query over the original
+table
+•
+The data engineer can create SHALLOW CLONE of the table and run the query
+over the newly created table
+•
+The data engineer can request the admin to run the query
+•
+The data engineer can use Python’s spark.sql() function to query the data
+Explanation
+Let us see which of the above options can be used by the data engineer to quickly
+test the data.
+The data engineer can create DEEP CLONE of the table and run the query over the newly
+created table
+INCORRECT. This can be one of the solutions but as given in the
+40
+Question, the Bronze table contains 20 million records and creating a DEEP CLONE of the table will take a lot of time. DEEP CLONE command is used to create a copy of the table which needs to be used repeatedly. Also note, while creating the DEEP CLONE of the table all the data needs to be copied to a new location incrementally which is a time taking process.
+The data engineer can request the data analyst to query over the original table
+INCORRECT. According to the
+41
+Question itself, the original table cannot be used.
+The data engineer can create SHALLOW CLONE of the table and run the query over the newly created table CORRECT. Creation of SHALLOW CLONE is the quickest option as it does not involve any data movement. In SHALLOW CLONE, only the definition(schema) of the original table is copied but the newly created table refers to the same data files which makes the process faster. It is more suited for testing and experimentation.
+The data engineer can request the admin to run the query
+INCORRECT. It is not a valid option.
+The data engineer can use Python’s spark.sql() function to query the data INCORRECT. Python does support spark.sql() function but querying the original table is not allowed, as per the
+42
+Question.
+More Info: Selecting the correct type of cloning (Shallow or Deep)
+43
+Question 29
+A team of data analysts is using CTE (Common Table Expression) as part of their
+SQL queries to be used for one of the Bronze tables in multi -hop architecture. All of
+the data analysts try to explain the usage of CTE to a newly joined member. Which of
+the following statements about CTE is/are correct?
+Data Analyst 1 – CTE can be created using WITH command
+Data Analyst 2 – CTE allows a result to be used multiple times
+Data Analyst 3 – CTE cannot be nested
+Data Analyst 4 – CTE can be created using CTE command
+•
+Data analysts 1, 2, 3 are right but data analyst 4 Is wrong
+•
+All the data analysts are right
+•
+Data analysts 2 and 3 are right but the data analysts 1 and 4 are wrong
+•
+Data analysts 1 and 2 are right but the data analysts 3 and 4 are wrong
+•
+All the data analysts are wrong except data analyst 1
+Explanation
+Let’s look at each of the data analysts’ statements:
+Data Analyst 1 – CTE can be created using WITH command
+RIGHT. WITH is the only option to create a CTE.
+Data Analyst 2 – CTE allows a result to be used multiple times
+RIGHT. The main purpose of CTE is to create a set of result which can be reused
+several times
+44
+Data Analyst 3 – CTE cannot be nested
+WRONG. There can be CTE within a CTE. So, they can be nested
+Data Analyst 4 – CTE can be created using CTE command WRONG. As discussed earlier, CTE can be created using WITH command only. There is no CTE command in SQL.
+More Info: CTE(Common Table Expression) in SQL
+45
+Question 30
+A data engineer is working on a project which involves writing a multi -hop
+architecture using Python. A data analyst also needs to work in the same project but
+knows only SQL. Which of the following can be done by the data engineer to assure
+both of them work in their own layers of the multi-hop architecture?
+•
+Use %python in the cell and run SQL queries
+•
+Change the default language of the notebook to SQL
+•
+Register a UDF
+•
+Contact Databricks Administrator to change the language
+•
+Create a temporary view using createOrReplaceTempView() function
+Explanation
+Whenever you need to use a Python data object in SQL, a temporary view can be
+created which can be used to run SQL commands. The temporary view can be
+registered using the createOrReplaceTempView() function.
+More Info: Using Python's DataFrames in SQL
+46
+Question 31
+Which of the following SQL statements counts the number of unique rows from the
+Silver table routes?
+•
+SELECT count(*) FROM routes;
+•
+SELECT count(DISTINCT *) FROM routes;
+•
+SELECT count_if(* is DISTINCT) FROM routes;
+•
+SELECT count(*) FROM routes WHERE * is DISTINCT;
+•
+SELECT count(UNIQUE (*)) FROM routes;
+Explanation
+Let us look at all the options one by one
+SELECT count(*) FROM routes
+INCORRECT. It will count the total number of rows from the table routes and not the
+unique (distinct) rows.
+SELECT count(DISTINCT *) FROM routes
+CORRECT. This will print the count of distinct rows from the table routes. Also
+note, DISTINCT (*) can also be used instead of DISTINCT *
+SELECT count_if(* is DISTINCT) FROM routes
+INCORRECT. This is not a valid statement and will return an error.
+47
+SELECT count(*) FROM routes WHERE * is DISTINCT
+INCORRECT. This is also an invalid statement and will return an error.
+SELECT count(UNIQUE (*)) FROM routes INCORRECT. UNIQUE is not a valid keyword, DISTINCT should be used instead.
+More Info: count() function in SQL
+48
+Question 32
+In which of the following layers of multi-hop architecture the most common
+operation is aggregation?
+•
+Gold
+•
+Silver
+•
+Bronze
+•
+Raw
+•
+Diamond
+Explanation
+Let us go through the layers of medallion architecture or the multi-hop architecture
+in Databricks.
+Firstly, the raw data is ingested into the Bronze table.
+Next, the Silver table is created using columns from different Bronze tables
+optionally joined with some static tables. Also, a major addition in the Silver table is
+conversion of Linux based timestamp column into human readable time (e.g.
+HH:mm:ss).
+Lastly, The Gold table is the collection of major aggregations from the Silver table(s).
+The Gold table is then used for reporting and dashboards.
+Coming back to this
+49
+Question, aggregation is the most common operation in the Gold table.
+More Info: Multi-hop (medallion) architecture in Databricks
+50
+Question 33
+Which of the following can be a source for the Bronze table in Incremental multi -hop
+architecture?
+1. Kafka Stream
+2. Silver table
+3. Gold Table
+4. JSON data
+5. Raw data
+•
+1, 2, 3, 4
+•
+1, 2, 3
+•
+1, 3, 4, 5
+•
+1, 4, 5
+•
+2, 3, 5
+Explanation
+The data flows from Bronze to Silver and then to Gold. The Bronze table
+contains raw data and cannot accept enriched data from the Silver table
+or aggregated data from the Gold table.
+The Bronze table accepts sources like raw streams including Kafka Stream, various
+data formats including JSON, CSV, AVRO etc.
+So, all the options given above except Silver and Gold table can become a source for
+Bronze table in a multi-hop architecture.
+More Info: Bronze table in multi-hop (medallion) architecture
+51
+Question 34
+A data engineer is using AutoLoader for a streaming ETL process and a new file has
+arrived with a different schema in the source directory. This newly added file has an
+extra column named last_name. What could be the possible outcome when the
+AutoLoader processes this file?
+•
+The AutoLoader process will fail with an error
+•
+The AutoLoader will discard that column with no reference to that column
+•
+The process will stop and the user can choose the next step
+•
+The process will continue with the details of added column last_name stored
+in _rescued_data column
+(Correct)
+•
+The new file will be auto deleted and will not be processed
+Explanation
+AutoLoader can rescue the data which does not fit the schema by using an extra
+column in the schema named _rescued_data. The process continues as usual and
+the column _rescued_data gets updated as soon as an incompatible record arrives.
+More Info: Use of _rescued_data column in AutoLoader
+52
+Question 35
+A junior data engineer has joined a team and needs to create a DLT pipeline. Which
+of the following describes the flow of actions to create a new pipeline?
+1. Select the Jobs pane from the left side menu
+2. Select Run Pipeline
+3. Select Create Pipeline
+4. Select Compute pane from the left side menu
+5. Click on Create DLT Pipeline
+6. Click on Delta Live Tables tab
+7. Drag the DLT pane from left side menu to the notebook cell
+•
+1 -> 5 -> 3
+•
+7 -> 6 -> 2
+•
+1 -> 6 -> 3
+(Correct)
+•
+7 -> 6 -> 3
+•
+4 -> 7 -> 2
+Explanation
+This
+53
+Question involves detailing about the creation of DLT pipeline. If you have created the DLT pipelines, this would be an easy one.
+To start, you should know that to create a DLT pipeline you need to select Jobs pane from the left side menu. Once you are in the Jobs pane, you need to select Delta Live Tables tab and then click on Create Pipeline. Correct flow of actions would be 1 -> 6 -> 3.
+More Info: Steps to create a DLT pipeline
+54
+Question 36
+A junior data engineer has joined a team working on a project involving creation of
+Delta Live Table pipelines using SQL. They see the following constraint added to the
+table:
+CONSTRAINT age_in_range EXPECT (age > 0 AND age < 60) ON VIOLATION DROP
+ROW
+What will be the effect of this statement on the working of the DLT pipeline?
+•
+Every time the value of age column is between 0 and 60, the pipeline will fail
+•
+Every time the value of age column is between 0 and 60, the row will be
+dropped
+•
+Every time the value of age column is not between 0 and 60, the pipeline will
+fail
+•
+Every time the value of age column is not between 0 and 60, the row will be
+dropped
+(Correct)
+•
+The statement has no effect
+Explanation
+A constraint can be added to a Delta Live Table using CONSTRAINT command. Let us
+look at the statement:
+CONSTRAINT age_in_range EXPECT (age > 0 AND age < 60) ON VIOLATION DROP
+ROW
+Now, the confusing part of the
+55
+Question is the condition. Let us review the condition: (age > 0 and age < 60)
+This condition is the expected condition, which means that if the condition is not met the row will be dropped. In simpler terms, if the age is not between 0 and 60, the row will be dropped.
+More Info: Dropping invalid records from a Delta Live Table
+56
+Question 37
+Which of the following can be combined with a DLT pipeline?
+•
+Medallion architecture – Bronze, Silver and Gold tables
+•
+AutoLoader
+•
+Constraints on tables
+•
+All of these
+(Correct)
+•
+None of these
+Explanation
+All these techniques mentioned above can be combined with a DLT pipeline.
+More Info: Using medallion architecture and AutoLoader with a DLT
+pipeline | Constraints on Delta Live Tables
+57
+Question 38
+A team of data analysts is running queries on a SQL endpoint and the queries are
+running at a decent speed. Now, the number of users has increased massively from
+1 to 20 and because of that the queries have been running very slow. The cluster
+size has already been set to the maximum but still the queries are on a slower side.
+What can you suggest to make the queries run faster for all the users?
+•
+Request Databricks Administrator to increase the speed
+•
+Turn on the Auto-stop feature
+•
+Increase the Max bound of cluster scaling range
+(Correct)
+•
+Turn on the Serverless feature
+•
+Decrease the cluster size and increase the Max bound of cluster scaling
+range
+Explanation
+With the latest update from Databricks, SQL endpoint is now known as SQL
+warehouse.
+To answer this
+58
+Question you should know the different options for creating a new SQL endpoint(warehouse). While creating a SQL endpoint(warehouse) some of the common features which you can configure as per your need are as follows:
+1. Name – Name given to each endpoint(warehouse) to uniquely identify the endpoints(warehouses).
+2. Cluster size – Required size of the cluster (T-shirt size e.g. Small, Medium, X-Large etc.) to be selected from the drop down menu. Higher the cluster size, lower the latency in running SQL queries.
+3. Scaling – Min and Max cluster values for scaling to be entered. Scaling the endpoint(warehouse) to more clusters will increase the speed for all the users working on that endpoint(warehouse).
+4. Advanced features – It includes features like adding Tags or turning on the Serverless feature.
+As far as this
+59
+Question is concerned, the cluster size has already been set to the largest available. So, the Max bound of cluster scaling range needs to be increased. If multiple users are using the same SQL endpoint(warehouse), increasing the Max bound of cluster scaling range will allow more users to run their queries smoothly.
+More Info: SQL endpoint(warehouse) properties
+60
+Question 39
+Which of the following statements is true for cluster pools in Databricks?
+•
+By using cluster pools, you can reduce start time for a cluster
+•
+It maintains several clusters in idle state and can be used when necessary
+•
+By using cluster pools, you can reduce auto-scaling time for a cluster
+•
+Same cluster pool can be used for a driver node and worker nodes
+•
+All the above statements are true for a cluster pool
+(Correct)
+Explanation
+Cluster pools help speed up the cluster and its ability to auto scale. A set of clusters
+are attached to the pool. Whenever a cluster is required, it is created from the
+pool. Worker nodes and driver node can share the same pool but different pools for
+worker nodes and driver node can also exist.
+So, if a cluster is taking a lot of time to start, one of the reasons could be that it is not
+attached to a cluster pool.
+More Info: Cluster pools in Databricks
+61
+Question 40
+A scheduled query is running every 5 seconds to ingest data from a networking
+system which contains various network related attributes. The network engineer
+should be informed through email if the value in the fault column increases to 10 or
+more. Which of the following is the best approach?
+•
+A manual email can be sent by the data engineer if the value increases the
+threshold
+•
+The Databricks administrator can send the email to the network engineer
+•
+Databricks Alerts can be used to notify the network engineer through email
+(Correct)
+•
+Use the dashboard to check the value of the fault column
+•
+The alerting system through email is not yet supported in Databricks
+Explanation
+To access the alerting system on Databricks, you need to select Alerts from the left
+side navigation menu. (Make sure you are in Databricks SQL to access Alerts). The
+Alerts page allows you to create, edit and view the alerts.
+An alert can be sent as soon as a column or group of columns reaches a threshold.
+The alerts can be either one-time or recurring based on the selection made while
+creating the alert. Similarly, the alert destination can also be set including email,
+Slack, Webhook etc.
+More Info: Alerts in Databricks
+62
+Question 41
+Which of the following is optional while creating a Delta Live Table pipeline?
+•
+Target Database
+(Correct)
+•
+Pipeline name
+•
+Notebook Library
+•
+Minimum and maximum workers
+•
+Pipeline mode
+Explanation
+Every option except the Target Database name is mandatory. Target Database name
+is optional and can be skipped while creating a pipeline.
+More Info: Use of target database name in a DLT pipeline
+63
+Question 42
+Which of the following has been built to provide fine-grained data governance and
+security in the Lakehouse?
+•
+AutoLoader
+•
+Unity Catalog
+(Correct)
+•
+SQL endpoint
+•
+Cluster
+•
+Data Explorer
+Explanation
+Unity Catalog has been specially built for having a fine-grained data governance and
+security in Lakehouse. Before the introduction of Unity Catalog, it was close to
+impossible to provide access to a part of data since the permissions were set
+to files and directories. Unity Catalog eradicates this problem by allowing access
+on row, column and view level.
+More Info: Unity Catalog in Databricks
+64
+Question 43
+Which of the following queries can be used to REVOKE all the permissions from
+user bob@candes.db on database courses?
+•
+REVOKE ALL PRIVILEGES ON courses DB FROM `bob@candes.db`
+•
+REVOKE ALL PERMISSIONS ON DATABASE courses FROM `bob@candes.db`
+•
+REVOKE ALL PRIVILEGES FROM courses SCHEMA TO `bob@candes.db`
+•
+REVOKE ALL PRIVILEGES ON courses DATABASE FROM USER `bob@candes.db`
+•
+REVOKE ALL PRIVILEGES ON DATABASE courses FROM `bob@candes.db`
+(Correct)
+Explanation
+The syntax for revoking permissions from a user or a group is as follows:
+REVOKE [privilege_type] ON [data_object_type] [data_object_name] FROM
+[user_or_group_name]
+REVOKE – Command to revoke permission
+privilege_type – It includes type of privileges like SELECT, VIEW or ALL PRIVILEGES
+data_object_type – It can be one
+of TABLE, SCHEMA or DATABASE, CATALOG, FUNCTION etc.
+data_object_name – The name of the database, table, catalog etc.
+user_or_group_name – Name of the user or group from which the privileges need to
+be revoked.
+After understanding the REVOKE syntax, you can easily tell why the last option is
+correct.
+More Info: Using REVOKE command
+65
+Question 44
+A data engineer is the owner of the organization database. Which of the following
+permissions cannot be controlled by the Databricks administrator?
+•
+Grant permissions to users to the tables in organization database
+•
+Revoke permissions from users for accessing the organization database
+•
+View all the grants on organization database
+•
+Revoke permissions from the owner of the organization database
+(Correct)
+•
+Grant permission to other users to the organization database
+Explanation
+The Databricks administrator is the one who can change the owner of a table or a
+database but cannot revoke privileges from an owner of the table or database. The
+admin can view permissions, grant permissions to or revoke permissions from the
+users or groups.
+More Info: Databricks administrator limitations
+66
+Question 45
+A Databricks administrator needs to view all the grants to the user abc@def.com for
+database university. Which of the following commands can be used?
+•
+SHOW GRANTS `abc@def.com` ON university
+•
+SHOW ALL GRANTS TO `abc@def.com` ON DATABASE university
+•
+SHOW GRANTS `abc@def.com` ON DATABASE university
+(Correct)
+•
+VIEW GRANTS TO `abc@def.com` ON DATABASE university
+•
+SHOW ALL GRANTS TO `abc@def.com` university
+Explanation
+Firstly, to view grants on a data object (table, database, view etc.) you need to be one
+of the following:
+1. Databricks admin or
+2. Owner of the data object or
+3. The user for which the grants are being viewed.
+Syntax for viewing the grants for a user on a specific database is:
+SHOW GRANTS `user_name` ON DATABASE database_name
+Also note the usage of backticks (``) instead of inverted commas(‘’).
+More Info: Viewing grants on a schema(database) for a user
+67
+68
